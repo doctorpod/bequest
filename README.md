@@ -1,6 +1,23 @@
-# Overview
+# Bequest
 
-Bequest enables password, MAC address and expiry-based validation and secure data provision via a single license file.
+There might be times when you (the bequestor) want to provide data to a third party (the bequestee) for a limited time and/or only on a specific machine. Bequest enables password, MAC address and expiry-based protection of data via a single, binary, encrypted license file.
+
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'bequest'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install bequest
+
+## Usage
 
 The bequestor would run:
 
@@ -11,7 +28,7 @@ The bequestor would run:
 
 Parameters:
 
-  1. Source data file - this is the secret data you want made securely available to the client
+  1. Source data file - this is the secret data you want made securely available to the client, it can be plain text or binary
   2. Out file - the license file that will be created
 
 Options (at least ONE of :password or :mac_addr must be set):
@@ -41,4 +58,11 @@ The password will be prompted for if set and *:password* not supplied. The first
     lic.expires_at         # => Ruby Time object
     lic.status             # => :ok, :expired, :unauthorized, or :tampered
 
-The license file is installed at the client. This system should be used where the source data is sensitive, or should be kept secret and not readily available to the client, but is needed by the client's system. The recommended use is to keep the returned unencrypted data in memory only, and not write it to disk at any time.
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request

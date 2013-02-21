@@ -264,5 +264,16 @@ module Bequest
         end
       end
     end
+
+    describe "Bequestee loads a binary file" do
+      before(:each) do
+        License.create('./samples/hello.exe', @lic_file, :password => @password)
+        @lic, @data = License.load(@lic_file, :password => @password)
+      end
+      
+      it "binary data matches original" do
+        @data == open('./samples/hello.exe', "rb") {|io| io.read }
+      end
+    end
   end
 end
